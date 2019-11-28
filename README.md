@@ -1,7 +1,7 @@
 # Entry-Management-Software-Using-Python
 Basic Entry Management Software Using Python with GUI using tkinter
 
-Short Description
+# Short Description
 
 This is a software which can efficiently manage your visitor entries. From performing tasks like getting host, visitor details, it can do everything. It has three portals on the homepage, one for Host, Visitor Checkin and Visitor Checkout. The Host get mainly all details and in last sent to the visitor and all this is also stores in a text file to keep a record of visitor and hosts -
 
