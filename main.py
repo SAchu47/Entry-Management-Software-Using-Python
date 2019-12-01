@@ -5,12 +5,13 @@ import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
-
+import time
 
 #Email setup
 msg = MIMEMultipart()
-msg['From'] = "comapny email"
-password = "email password"
+msg['From'] = "asccc7093@gmail.com"
+msgvi = MIMEMultipart()
+password = "ANSA7093*#"
 
 
 root = Tk()
@@ -32,7 +33,7 @@ def Host():
     global headingFrame1,headingFrame2,headingLabel,btn1,btn2,Canvas1
     
     def hostdetails():
-    	global hostemail
+    	global hemail
     	hostname = en1.get()
     	hostemail = en2.get()
     	hemail = hostemail
@@ -117,14 +118,13 @@ def Visitor():
     	checkinphone = en3.get()
     	visitordetails[checkinname] = [checkinname, checkinemail, checkinphone, str(datetime.datetime.now())]
     	
-    	
     	#Email to Host
     	msg['To'] = hemail
     	msg["Subject"] = "CheckIn Details Of Visitor"
 
-    	body = str("Name : " + checkinname + "\n" + "Email : " + checkinemail + "\n" + "Phone : " + checkinphone + "\n")
+    	body = str("Name : " + checkinname + "\t\t\t" + "Email : " + checkinemail + "\t\t\t" + "Phone : " + checkinphone + "\t\t\t")
     	msg.attach(MIMEText(body, 'html'))
-
+    	#time.sleep(10)
     	server = smtplib.SMTP("smtp.gmail.com", 587)
     	server.starttls()
     	server.login(msg['From'], password)
@@ -215,20 +215,21 @@ def Visitorout():
     	file.write("Name : " + visitordetails[checkoutname][0] + "\n" + "Email : " + visitordetails[checkoutname][1] + "\n" + "Phone : " + visitordetails[checkoutname][2] + "\n"+ "CheckInTime : " + visitordetails[checkoutname][3] + "\n" + "checkOutTime : " + str(datetime.datetime.now()) + "\n")
     	file.write("-----------------------------------------------------------------------------------------\n")
     	file.close()
-    	del visitordetails[checkoutname]
 
     	#Email to the Visitor
-    	msg['To'] = visitordetails[checkoutname][1]
-    	msg["Subject"] = "Meetin Details From the Office"
+    	msgvi['To'] = visitordetails[checkoutname][1]
+    	msgvi["Subject"] = "Meetin Details From the Office"
 
-    	body = str("Name : " + visitordetails[checkoutname][0] + "\n" + "Email : " + visitordetails[checkoutname][1] + "\n" + "Phone : " + visitordetails[checkoutname][2] + "\n"+ "CheckInTime : " + visitordetails[checkoutname][3] + "\n" + "checkOutTime : " + str(datetime.datetime.now()) + "\n")
-    	msg.attach(MIMEText(body, 'html'))
+    	body1 = str("Name : " + visitordetails[checkoutname][0] + "\t\t\t" + "Email : " + visitordetails[checkoutname][1] + "\t\t\t" + "Phone : " + visitordetails[checkoutname][2] + "\t\t\t"+ "CheckInTime : " + visitordetails[checkoutname][3] + "\t\t\t" + "checkOutTime : " + str(datetime.datetime.now()) + "\n")
+    	msgvi.attach(MIMEText(body1, 'html'))
 
     	server = smtplib.SMTP("smtp.gmail.com", 587)
     	server.starttls()
     	server.login(msg['From'], password)
-    	server.sendmail(msg['From'], msg['To'], msg.as_string())
+    	server.sendmail(msg['From'], msgvi['To'], msgvi.as_string())
     	server.quit() 
+    	del visitordetails[checkoutname]
+
 
     def hello():
 	   	messagebox.showinfo("CheckOut", "Your Done")

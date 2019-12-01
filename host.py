@@ -10,12 +10,12 @@ def Host():
     global headingFrame1,headingFrame2,headingLabel,btn1,btn2,Canvas1
     
     def hostdetails():
-    	global hostemail
+    	global hemail
     	hostname = en1.get()
     	hostemail = en2.get()
     	hemail = hostemail
     	hostphone = en3.get()
-    	path = '/home/coming---soon/Desktop/summergeeks/hostdetails.txt' #path to file
+    	path = '/home/coming---soon/Desktop/summergeeks/hostdetails.txt'
     	file = open(path,'a')
     	file.write("Name : " + hostname + "\n" + "Email : " + hostemail + "\n" + "Phone : " + hostphone + "\n")
     	file.write("-----------------------------------------------------------------------------------------\n")
@@ -25,7 +25,7 @@ def Host():
 	   	messagebox.showinfo("Host", "Your Done")
 
     
-    # Login for the host
+    # Login for host
     def Login():
 	    
 	    global labelFrame
